@@ -14,5 +14,8 @@ ON e.id = d.id
 print(df.head())
 print(df.isnull().sum())
 df.fillna("Unknown", inplace=True)
+print(
+    df.groupby("department").size()
+)
 
 conn.close()
