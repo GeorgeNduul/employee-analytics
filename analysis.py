@@ -11,3 +11,7 @@ df = pd.read_sql(
 print(df.head())
 
 conn.close()
+
+filtered = df[df["id"] > 5]
+
+print(filtered)
