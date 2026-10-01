@@ -1,26 +1,13 @@
+import pandas as pd
 import sqlite3
 
 conn = sqlite3.connect("employees.db")
 
-cursor = conn.cursor()
+df = pd.read_sql(
+    "SELECT * FROM employees",
+    conn
+)
 
-query = """
-SELECT COUNT(*)
-FROM employees
-"""
-query = """
-SELECT MAX(id)
-FROM employees
-"""
-query = """
-SELECT MIN(id)
-FROM employees
-"""
-
-cursor.execute(query)
-
-result = cursor.fetchone()
-
-print(result)
+print(df.head())
 
 conn.close()
