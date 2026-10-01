@@ -1,22 +1,20 @@
-import pandas as pd
 import sqlite3
 
 conn = sqlite3.connect("employees.db")
 
-df = pd.read_sql(
-    "SELECT * FROM employees",
-    conn
-)
+cursor = conn.cursor()
 
-print(df.head())
+query = """
+SELECT e.name,
+       d.department
+FROM employees e
+INNER JOIN departments d
+ON e.id = d.id
+"""
+
+cursor.execute(query)
+
+for row in cursor.fetchall():
+    print(row)
 
 conn.close()
-
-filtered = df[df["id"] > 5]
-
-print(filtered)
-print(df.isnull().sum())
-df.fillna(
-    "Unknown",
-    inplace=True
-)
