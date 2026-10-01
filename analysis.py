@@ -15,3 +15,8 @@ conn.close()
 filtered = df[df["id"] > 5]
 
 print(filtered)
+print(df.isnull().sum())
+df.fillna(
+    "Unknown",
+    inplace=True
+)
