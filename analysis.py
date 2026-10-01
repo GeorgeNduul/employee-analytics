@@ -5,15 +5,22 @@ conn = sqlite3.connect("employees.db")
 cursor = conn.cursor()
 
 query = """
-SELECT *
+SELECT COUNT(*)
+FROM employees
+"""
+query = """
+SELECT MAX(id)
+FROM employees
+"""
+query = """
+SELECT MIN(id)
 FROM employees
 """
 
 cursor.execute(query)
 
-rows = cursor.fetchall()
+result = cursor.fetchone()
 
-for row in rows:
-    print(row)
+print(result)
 
 conn.close()
