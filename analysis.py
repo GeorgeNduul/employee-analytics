@@ -1,19 +1,16 @@
+import pandas as pd
 import sqlite3
 
 conn = sqlite3.connect("employees.db")
 
-cursor = conn.cursor()
+df = pd.read_sql("""
+SELECT e.name,
+       d.department
+FROM employees e
+INNER JOIN departments d
+ON e.id = d.id
+""", conn)
 
-query = """
-SELECT department,
-       COUNT(*) AS employee_count
-FROM departments
-GROUP BY department
-"""
-
-cursor.execute(query)
-
-for row in cursor.fetchall():
-    print(row)
+print(df.head())
 
 conn.close()
