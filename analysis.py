@@ -12,5 +12,7 @@ ON e.id = d.id
 """, conn)
 
 print(df.head())
+print(df.isnull().sum())
+df.fillna("Unknown", inplace=True)
 
 conn.close()
