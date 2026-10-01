@@ -17,6 +17,30 @@ df.to_sql(
     if_exists="replace",
     index=False
 )
+departments = pd.DataFrame({
+"id": [1,2,3,4,5,6,7,8,9,10],
+"department": [
+"IT",
+"Finance",
+"HR",
+"Operations",
+"Sales",
+"IT",
+"Finance",
+"HR",
+"Operations",
+"Sales"
+]
+})
+
+departments.to_sql(
+"departments",
+conn,
+if_exists="replace",
+index=False
+)
+
+conn.close()
 
 conn.close()
 
